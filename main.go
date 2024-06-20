@@ -14,7 +14,7 @@ type Message struct {
 
 func main() {
 
-	reverse1() //Custom
+	// reverse1() //Custom
 	// reverse2("Hello")               //Infoys
 	// swapTwoNumber(10, 20)           //Infoys
 	// sortByInts()                    //Using sort package
@@ -28,7 +28,10 @@ func main() {
 	// minimumValueFromSlice()
 	// maximumValueFromSlice()
 	// sortByValue() // NTT DATA
-	// goroutineLogical() // HCL  //sender send the message support 100 and receiver received all msg
+	// goroutineLogical() // HCL
+	// CLICobra() //Persistent (pending)
+	// CRUD_operation_No_DB() // Persistent (pending)
+	//TheaterBookingProgram_theater() //Bristlecone go run main.go theaterbooking.go
 }
 
 func sortByFloat64s() {
@@ -83,34 +86,6 @@ func reverse2(s string) {
 		p = append(p, r[i])
 	}
 	fmt.Println("reverse value is:", strings.Join(p, ""))
-}
-
-func testGoroutine(data chan int, wg *sync.WaitGroup) {
-	defer wg.Done() // Signal that this goroutine is done
-	data <- 100
-	defer close(data)
-}
-
-func test2(data int, cha1 chan int, wg *sync.WaitGroup) {
-	// fmt.Println("ss", <-data)
-	defer wg.Done() // Signal that this goroutine is done
-	cha1 <- data
-	close(cha1)
-}
-
-func test3(data int, ch2 chan int, wg *sync.WaitGroup) {
-	defer wg.Done()
-	ch2 <- data
-	close(ch2)
-}
-
-func test4(data Message, ch3 chan Message, wg *sync.WaitGroup) {
-	wg.Add(1)
-	defer wg.Done()
-	data.Name = "Suraj"
-	data.Phone = 987654321
-	ch3 <- data
-	close(ch3)
 }
 
 func sortByKeySlice2() {
@@ -261,7 +236,6 @@ func sortByValue() {
 	finalSlice := []int{}
 	finalSlice = append(zerodataArr, dataArr...)
 	fmt.Println("finalSlice := ", finalSlice)
-
 }
 
 func goroutineLogical() {
