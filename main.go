@@ -25,13 +25,14 @@ func main() {
 	// sortByKeyTwoSlice()             // Infoys
 	// getCountDuplicateValueInSlice() // Persistent
 	// getUniqueSlice()                // create Custom
+	// getUniqueSliceNewWay            // Create Custom New Way to get Unique value
 	// minimumValueFromSlice()
 	// maximumValueFromSlice()
-	// sortByValue() // NTT DATA
+	// sortByValue() // NTT DATA //ip: [1,9,0,3,0,0,1,0] //op: [0,0,0,0,1,9,3,1]
 	// goroutineLogical() // HCL
 	// CLICobra() //Persistent (pending)
 	// CRUD_operation_No_DB() // Persistent (pending)
-	//TheaterBookingProgram_theater() //Bristlecone go run main.go theaterbooking.go
+	// TheaterBookingProgram_theater() //Bristlecone go run main.go theaterbooking.go
 }
 
 func sortByFloat64s() {
@@ -263,4 +264,16 @@ func goroutineLogical() {
 	}
 	wg.Wait()
 	close(ch_all_message)
+}
+
+func getUniqueSliceNewWay(slice1 []string) {
+	uniqueArr := []string{}
+	seen := make(map[string]bool)
+	for _, v := range slice1 {
+		if !seen[v] {
+			seen[v] = true
+			uniqueArr = append(uniqueArr, v)
+		}
+	}
+	fmt.Println(" uniqueArr: ", uniqueArr)
 }

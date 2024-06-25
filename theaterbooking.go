@@ -1,3 +1,20 @@
+/*
+Q-
+Make a struct Theater with the following fields: Seats, RWMutex, invoice chan string.
+Create three methods over a struct.
+The first method returns the number of seats available in Theater.
+
+The second method book a seat in the theater. If the seat is equal to zero, no one can book it. ( In the booking method, put simple print statements that show booking has been made if seats are available)
+Once the seat is booked in Theater, add the name of the user in the invoice channel.
+
+Create a third Method printInvoice(), and run it as a goroutine that runs independently
+It fetches the name from the invoice channel. After fetching the name, send an email to the user (use the print statement to demonstrate this)
+
+Note:-
+You can allow simultaneous reading of seats data but make sure only one go routine can book a seat at a time.
+When all bookings are completed, channel should stop receiving data and program should quit gracefully
+*/
+
 package main
 
 import (
