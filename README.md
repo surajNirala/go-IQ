@@ -17,3 +17,6 @@ goroutineLogical() // HCL  //sender send the message support 100 and receiver re
 CLICobra() ## Create CLI Tool Using Cobra Library (pending) 19-06-2024 //Persistent
 CRUD_operation_No_DB() ##CRUD Operation without db (Pending) 19-6-2024 //Persistent
 TheaterBookingProgram() //Bristlecone
+OddEven() //Using goroutine,channel and waitgroup //HCL
+applyMask("00010110", "xx2xxx35") //Goguru
+SliceLogical() // goguru

@@ -33,6 +33,9 @@ func main() {
 	// CLICobra() //Persistent (pending)
 	// CRUD_operation_No_DB() // Persistent (pending)
 	// TheaterBookingProgram_theater() //Bristlecone go run main.go theaterbooking.go
+	// OddEven() //Using goroutine,channel and waitgroup //HCL
+	//applyMask("00010110", "xx2xxx35") //Goguru
+	SliceLogical() // goguru
 }
 
 func sortByFloat64s() {
@@ -276,4 +279,29 @@ func getUniqueSliceNewWay(slice1 []string) {
 		}
 	}
 	fmt.Println(" uniqueArr: ", uniqueArr)
+}
+
+func applyMask(input, mask string) {
+	updatedValue := ""
+	if len(input) != len(mask) {
+		fmt.Println("length is not equal.")
+	}
+	for index, v := range input {
+		if string(mask[index]) == "x" {
+			updatedValue += string(v)
+		} else {
+			updatedValue += string(mask[index])
+		}
+	}
+	fmt.Println("updatedValue : ", updatedValue)
+}
+
+func SliceLogical() {
+	even := []int{2, 4, 6, 8, 10}
+	odd := []int{1, 3, 5, 7, 9}
+	// slice := []int{}
+	// even1 := even
+	newSlice := append(even, odd[0:5]...)
+	fmt.Println("newSlice : ", newSlice)
+	fmt.Println("even : ", even)
 }
