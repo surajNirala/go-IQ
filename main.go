@@ -17,12 +17,13 @@ func main() {
 	// reverse1() //Custom
 	// reverse2("Hello")               //Infoys
 	// swapTwoNumber(10, 20)           //Infoys
-	// sortByInts()                    //Using sort package
+	// sortByInts()     ASC            //Using sort package
+	//sort_Sort_Reverse_IntSlice_DESC   DESC // Using sort package
 	// sortByStrings()                 //Using sort package
 	// sortByFloat64s()                //Using sort package
 	// sortByKeySlice1()               //Using sort package
 	// sortByKeySlice2()               // Infoys
-	// sortByKeyTwoSlice()             // Infoys
+	// getUniqueSliceFromTwoSlice()             // Infoys
 	// getCountDuplicateValueInSlice() // Persistent
 	// getUniqueSlice()                // create Custom
 	// getUniqueSliceNewWay            // Create Custom New Way to get Unique value
@@ -35,7 +36,13 @@ func main() {
 	// TheaterBookingProgram_theater() //Bristlecone go run main.go theaterbooking.go
 	// OddEven() //Using goroutine,channel and waitgroup //HCL
 	//applyMask("00010110", "xx2xxx35") //Goguru
-	SliceLogical() // goguru
+	// SliceLogical() // goguru
+}
+
+func sort_Sort_Reverse_IntSlice_DESC() {
+	a := []int{324, 434, 4, 33534, 545, 45, 41, 5, 656, 7, 67, 7, 3, 5, 45, 245}
+	sort.Sort(sort.Reverse(sort.IntSlice(a)))
+	fmt.Println(a)
 }
 
 func sortByFloat64s() {
@@ -127,7 +134,7 @@ func sortByKeySlice1() {
 	fmt.Println("message : ", message)
 }
 
-func sortByKeyTwoSlice() {
+func getUniqueFromTwoSlice() {
 	strings := []string{"Apple", "banana", "Apple", "cherry", "banana", "date"}
 	strings2 := []string{"Apple", "Bana", "orange", "Bana", "Bana", "orange"}
 
