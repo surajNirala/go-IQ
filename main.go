@@ -12,6 +12,10 @@ type Message struct {
 	Phone int
 }
 
+type Message1[T any] struct {
+	Content []T
+}
+
 func main() {
 
 	// reverse1() //Custom
@@ -37,8 +41,38 @@ func main() {
 	// OddEven() //Using goroutine,channel and waitgroup //HCL
 	//applyMask("00010110", "xx2xxx35") //Goguru
 	// SliceLogical() // goguru
+	//SecondHighestValue() // []int{12,54,65,76} // output := 65
+
+	//getGeneratic([]int{10, 20, 4, 45, 99, 23, 78}) // generatic introduce in 1.18 golang version
+	/* data := Message1[string]{
+		Content: []string{"golang"},
+	}
+	fmt.Println("data:", data) */
+
+	a := 20
+	b := 10
+	a, b = swapByGeneratic(a, b)
+	fmt.Println("output a is : ", a, "output b is : ", b)
 }
 
+func swapByGeneratic[T any](a, b T) (T, T) {
+	return b, a
+}
+
+// func getGeneratic[T any](data []T) {
+// func getGeneratic[T interface{}](data []T){
+// func getGeneratic[T interface{}](data []T) {
+func getGeneratic[T comparable](data []T) {
+	for _, item := range data {
+		fmt.Println(item)
+	}
+}
+
+func SecondHighestValue() {
+	nums := []int{10, 20, 4, 45, 99, 23, 78}
+	sort.Sort(sort.Reverse(sort.IntSlice(nums)))
+	fmt.Println(nums[1]) // Second Highest
+}
 func sort_Sort_Reverse_IntSlice_DESC() {
 	a := []int{324, 434, 4, 33534, 545, 45, 41, 5, 656, 7, 67, 7, 3, 5, 45, 245}
 	sort.Sort(sort.Reverse(sort.IntSlice(a)))
