@@ -39,9 +39,11 @@ func main() {
 	// CRUD_operation_No_DB() // Persistent (pending)
 	// TheaterBookingProgram_theater() //Bristlecone go run main.go theaterbooking.go
 	// OddEven() //Using goroutine,channel and waitgroup //HCL
-	//applyMask("00010110", "xx2xxx35") //Goguru
+	// applyMask("00010110", "xx2xxx35") //Goguru
 	// SliceLogical() // goguru
-	//SecondHighestValue() // []int{12,54,65,76} // output := 65
+	// SecondHighestValue() // []int{12,54,65,76} // output := 65
+	odd_even_using_goroutine_way_1() // Globallogic siddhi
+	odd_even_using_goroutine_way_2() // Globallogic siddhi
 
 	//getGeneratic([]int{10, 20, 4, 45, 99, 23, 78}) // generatic introduce in 1.18 golang version
 	/* data := Message1[string]{
@@ -49,10 +51,35 @@ func main() {
 	}
 	fmt.Println("data:", data) */
 
-	a := 20
-	b := 10
-	a, b = swapByGeneratic(a, b)
-	fmt.Println("output a is : ", a, "output b is : ", b)
+	//Turning Question
+	//a = []int{2,3,4,5,6,3}
+	//jump 2
+
+	// a := 20
+	// b := 10
+	// a, b = swapByGeneratic(a, b)
+	// fmt.Println("output a is : ", a, "output b is : ", b)
+
+	// fabonic(8)
+	// factorial(5)
+}
+
+func factorial(number int) {
+	tmp := 1
+	for i := 1; i <= number; i++ {
+		tmp = i * number
+	}
+	fmt.Println("Factorial : ", tmp)
+}
+func fabonic(number int) {
+	a := 0
+	b := 1
+	for i := 0; i < number; i++ {
+		fmt.Println(a)
+		next := a + b // 0+1 = 1 //
+		a = b         // 1
+		b = next      // 1
+	}
 }
 
 func swapByGeneratic[T any](a, b T) (T, T) {
@@ -345,4 +372,107 @@ func SliceLogical() {
 	newSlice := append(even, odd[0:5]...)
 	fmt.Println("newSlice : ", newSlice)
 	fmt.Println("even : ", even)
+}
+
+func odd_even_using_goroutine_way_1() {
+	//create seperate goroutine for odd even and given single serial output eg. 123456789
+
+	input := 20
+	serial_number := make(chan int)
+	wg := sync.WaitGroup{}
+	/* for i := 1; i <= input; i++ {
+		wg.Add(1)
+		if i%2 == 0 {
+			go func() {
+				defer wg.Done()
+				serial_number <- i
+			}()
+		} else {
+			go func() {
+				defer wg.Done()
+				serial_number <- i
+			}()
+		}
+	} */
+	for i := 1; i <= input; i++ {
+		if i%2 == 0 {
+			wg.Add(1)
+			go func(even int) {
+				defer wg.Done()
+				serial_number <- even
+			}(i)
+		}
+	}
+	for i := 1; i <= input; i++ {
+		if i%2 != 0 {
+			wg.Add(1)
+			go func(odd int) {
+				defer wg.Done()
+				serial_number <- odd
+			}(i)
+		}
+	}
+
+	go func() {
+		wg.Wait()
+		close(serial_number)
+	}()
+
+	// for v := range serial_number {
+	// 	fmt.Println("Output : ", v)
+	// }
+	randomNumber := []int{}
+	for v := range serial_number {
+		randomNumber = append(randomNumber, v)
+	}
+	sort.Ints(randomNumber)
+	for _, v := range randomNumber {
+		if v%2 == 0 {
+			fmt.Println("Even Number :", v)
+		} else {
+			fmt.Println("Odd Number :", v)
+		}
+	}
+}
+
+func odd_even_using_goroutine_way_2() {
+	//create seperate goroutine for odd even and given single serial output eg. 123456789
+	input := 20
+	serial_number := make(chan int)
+	wg := sync.WaitGroup{}
+	for i := 1; i <= input; i++ {
+		wg.Add(1)
+		if i%2 == 0 {
+			go func() {
+				defer wg.Done()
+				serial_number <- i
+			}()
+		} else {
+			go func() {
+				defer wg.Done()
+				serial_number <- i
+			}()
+		}
+	}
+
+	go func() {
+		wg.Wait()
+		close(serial_number)
+	}()
+
+	// for v := range serial_number {
+	// 	fmt.Println("Output : ", v)
+	// }
+	randomNumber := []int{}
+	for v := range serial_number {
+		randomNumber = append(randomNumber, v)
+	}
+	sort.Ints(randomNumber)
+	for _, v := range randomNumber {
+		if v%2 == 0 {
+			fmt.Println("Even Number :", v)
+		} else {
+			fmt.Println("Odd Number :", v)
+		}
+	}
 }
