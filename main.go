@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"sort"
+	"strconv"
 	"strings"
 	"sync"
 )
@@ -21,8 +22,8 @@ func main() {
 	// reverse1() //Custom
 	// reverse2("Hello")               //Infoys
 	// swapTwoNumber(10, 20)           //Infoys
-	// sortByInts()     ASC            //Using sort package
-	//sort_Sort_Reverse_IntSlice_DESC   DESC // Using sort package
+	//sortByInts() // ASC            //Using sort package
+	// sort_Sort_Reverse_IntSlice_DESC   //DESC // Using sort package
 	// sortByStrings()                 //Using sort package
 	// sortByFloat64s()                //Using sort package
 	// sortByKeySlice1()               //Using sort package
@@ -30,7 +31,7 @@ func main() {
 	// getUniqueSliceFromTwoSlice()             // Infoys
 	// getCountDuplicateValueInSlice() // Persistent
 	// getUniqueSlice()                // create Custom
-	// getUniqueSliceNewWay            // Create Custom New Way to get Unique value
+	// getUniqueSliceNewWay            // Create Custom New Way to get Unique value using only Single Loop
 	// minimumValueFromSlice()
 	// maximumValueFromSlice()
 	// sortByValue() // NTT DATA //ip: [1,9,0,3,0,0,1,0] //op: [0,0,0,0,1,9,3,1]
@@ -42,8 +43,8 @@ func main() {
 	// applyMask("00010110", "xx2xxx35") //Goguru
 	// SliceLogical() // goguru
 	// SecondHighestValue() // []int{12,54,65,76} // output := 65
-	odd_even_using_goroutine_way_1() // Globallogic siddhi
-	odd_even_using_goroutine_way_2() // Globallogic siddhi
+	// odd_even_using_goroutine_way_1() // Globallogic siddhi
+	// odd_even_using_goroutine_way_2() // Globallogic siddhi
 
 	//getGeneratic([]int{10, 20, 4, 45, 99, 23, 78}) // generatic introduce in 1.18 golang version
 	/* data := Message1[string]{
@@ -62,6 +63,34 @@ func main() {
 
 	// fabonic(8)
 	// factorial(5)
+
+	// 23-june-2025
+	// anam
+	/* for i := 0; i < 50; i++ {
+		//str := "racecar"
+		fmt.Println(i, palindrome(i))
+	} */
+
+	fetchURLsData()
+}
+
+func fetchURLsData() {
+	urls := []string{
+		"https://facebook.com",
+		"https://google.com",
+	}
+}
+
+func palindrome(str int) bool {
+	s := strconv.Itoa(str)
+	len := len(s)
+	for i := 0; i < len/2; i++ {
+		if s[i] != s[len-1-i] {
+			return false
+		}
+	}
+
+	return true
 }
 
 func factorial(number int) {
@@ -144,6 +173,7 @@ func reverse1() {
 		storeReverseString += string(reverseString[i])
 	}
 	fmt.Println("storeReverseString :==", storeReverseString)
+
 }
 
 func reverse2(s string) {
